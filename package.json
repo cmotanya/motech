@@ -11,6 +11,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "lucide-react": "^0.525.0",
+    "motion": "^12.23.3",
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-awesome-reveal": "^4.3.1",
@@ -26,6 +27,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
