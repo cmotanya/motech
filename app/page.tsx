@@ -2,11 +2,13 @@
 
 import { ArrowRight, PhoneCall } from "lucide-react";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 
 export default function Home() {
   const [titleNumber, setTitleNumber] = useState(0);
+  const pathname = useRouter();
 
   const titles = useMemo(() => ["innovative", "dependable", "scalable"], []);
 
@@ -76,19 +78,25 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mx-auto flex flex-col items-center justify-center gap-4 md:gap-8 px-4 md:flex-row">
-          <button className="group flex w-full cursor-pointer items-center justify-center gap-4 rounded-full bg-gray-300 px-3.5 py-4 font-medium text-gray-700 md:max-w-fit md:py-2.5">
+        <div className="mx-auto flex flex-col justify-center gap-4 px-4 md:flex-row md:items-center md:gap-8">
+          <button
+            onClick={() => pathname.push("/contact-us")}
+            className="group flex cursor-pointer items-center justify-center gap-4 rounded-full bg-gray-300 px-3.5 py-4 font-medium text-gray-700 md:py-2.5"
+          >
             Jump on a Call{" "}
             <PhoneCall
               size={18}
-              className="transform duration-300 ease-in-out group-hover:translate-x-1"
+              className="transform duration-300 ease-in-out group-hover:translate-x-1 group-active:translate-x-1"
             />
           </button>
-          <button className="group flex w-full cursor-pointer items-center justify-center gap-4 rounded-full bg-gray-800 px-3.5 py-4 text-gray-100 md:max-w-fit md:py-2.5">
+          <button
+            onClick={() => pathname.push("/contact-us")}
+            className="group flex cursor-pointer items-center justify-center gap-4 rounded-full bg-gray-800 px-3.5 py-4 text-gray-100 md:py-2.5"
+          >
             Get Started{" "}
             <ArrowRight
               size={18}
-              className="transform duration-300 ease-in-out group-hover:translate-x-1"
+              className="transform duration-300 ease-in-out group-hover:translate-x-1 group-active:translate-x-1"
             />
           </button>
         </div>
