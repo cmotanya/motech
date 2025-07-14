@@ -1,5 +1,8 @@
 "use client";
 
+import { ActionButton } from "@/components/action-button";
+import CaseStudies from "@/components/case-studies";
+import CompetitionSection from "@/components/competition-section";
 import { ArrowRight, PhoneCall } from "lucide-react";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
@@ -8,99 +11,95 @@ import { Fade } from "react-awesome-reveal";
 
 export default function Home() {
   const [titleNumber, setTitleNumber] = useState(0);
-  const pathname = useRouter();
+  const router = useRouter();
 
   const titles = useMemo(() => ["innovative", "dependable", "scalable"], []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (titleNumber === titles.length - 1) {
-        setTitleNumber(0);
-      } else {
-        setTitleNumber(titleNumber + 1);
-      }
+      setTitleNumber((prev) => (prev + 1) % titles.length);
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [titleNumber, titles.length]);
+  }, [titles.length]);
 
   return (
-    <section className="container flex h-dvh flex-col items-center gap-8">
-      <Fade
-        direction="left"
-        duration={500}
-        triggerOnce
-        cascade
-        damping={0.1}
-        className="w-full"
-      >
-        <div className="flex flex-col items-center justify-center gap-4">
-          <div className="rounded-lg bg-gray-100 p-2 text-sm text-gray-500">
-            Secure.Connect.Transform
-          </div>
-
-          <div className="flex flex-col">
-            <h1 className="my-4 text-center text-7xl tracking-tight text-gray-900">
-              <span>We deliver solutions that are </span>
-              <span className="relative flex w-full justify-center overflow-hidden pb-4 font-bold">
-                &nbsp;{" "}
-                {titles.map((title, index) => (
-                  <motion.span
-                    key={index}
-                    className="text-highlight absolute"
-                    initial={{ opacity: 0, y: -100 }}
-                    transition={{
-                      duration: 0.5,
-                      type: "spring",
-                      stiffness: 80,
-                    }}
-                    animate={
-                      titleNumber === index
-                        ? { opacity: 1, y: 0 }
-                        : {
-                            y: titleNumber > index ? -150 : 150,
-                            opacity: 0,
-                          }
-                    }
-                  >
-                    {title}
-                  </motion.span>
-                ))}
-              </span>
-            </h1>
-
-            <p className="max-w-2xl text-center leading-relaxed tracking-tight text-balance text-gray-500">
-              At <span className="font-semibold">Motech Solutions</span>, we
-              help businesses thrive with advanced solutions in CCTV
-              surveillance, biometric access control, enterprise networking, and
-              custom website development.
-            </p>
-          </div>
+    <section className="container flex min-h-dvh flex-col items-center gap-8">
+      <div className="flex flex-col items-center justify-center gap-4">
+        <div className="bg-100 text-600 rounded-lg p-2 text-sm font-medium">
+          Secure. Digital. Connect. Delivered by Experts
         </div>
 
-        <div className="mx-auto flex flex-col justify-center gap-4 px-4 md:flex-row md:items-center md:gap-8">
-          <button
-            onClick={() => pathname.push("/contact-us")}
-            className="group flex cursor-pointer items-center justify-center gap-4 rounded-full bg-gray-300 px-3.5 py-4 font-medium text-gray-700 md:py-2.5"
+        <Fade direction="up" duration={300} triggerOnce>
+          <h2 className="text-800 text-center text-4xl font-medium md:text-5xl">
+            Tired of juggling multiple service providers?
+          </h2>
+        </Fade>
+
+        <Fade direction="up" duration={300} delay={200} triggerOnce>
+          <h1 className="text-900 text-center text-6xl font-bold tracking-tight md:text-7xl">
+            We deliver solutions that are
+            <span className="align-left relative inline-block h-[90px] w-[350px] overflow-hidden align-middle">
+              {titles.map((title, index) => (
+                <motion.span
+                  key={index}
+                  className="text-highlight absolute top-1 left-1/2 -translate-x-1/2 capitalize md:left-3 md:translate-x-0"
+                  initial={{ opacity: 0, y: -100 }}
+                  transition={{
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 80,
+                  }}
+                  animate={
+                    titleNumber === index
+                      ? { opacity: 1, y: 0 }
+                      : {
+                          y: titleNumber > index ? -150 : 150,
+                          opacity: 0,
+                        }
+                  }
+                >
+                  {title}
+                </motion.span>
+              ))}
+            </span>{" "}
+          </h1>
+        </Fade>
+
+        <Fade direction="up" duration={300} delay={400} triggerOnce>
+          <p className="text-900 max-w-2xl text-center text-lg leading-relaxed tracking-tight">
+            At <span className="font-semibold">Motech Solutions</span>, we’re
+            more than a vendor. We’re your dedicated partner for{" "}
+            <strong>CCTV</strong>, <strong>access control</strong>,{" "}
+            <strong>enterprise networking</strong>, and{" "}
+            <strong>custom web development</strong>—built for security and
+            scalability.
+          </p>
+        </Fade>
+      </div>
+
+      <div className="mx-auto mt-6 flex flex-col justify-center gap-4 px-4 md:flex-row md:items-center md:gap-8">
+        <Fade duration={300} delay={600} triggerOnce>
+          <ActionButton
+            onClick={() => router.push("/contact-us")}
+            variant="secondary"
+            icon={PhoneCall}
           >
-            Jump on a Call{" "}
-            <PhoneCall
-              size={18}
-              className="transform duration-300 ease-in-out group-hover:translate-x-1 group-active:translate-x-1"
-            />
-          </button>
-          <button
-            onClick={() => pathname.push("/contact-us")}
-            className="group flex cursor-pointer items-center justify-center gap-4 rounded-full bg-gray-800 px-3.5 py-4 text-gray-100 md:py-2.5"
+            Book a Consultation
+          </ActionButton>
+
+          <ActionButton
+            onClick={() => router.push("/contact-us")}
+            icon={ArrowRight}
           >
-            Get Started{" "}
-            <ArrowRight
-              size={18}
-              className="transform duration-300 ease-in-out group-hover:translate-x-1 group-active:translate-x-1"
-            />
-          </button>
-        </div>
-      </Fade>
+            Get Started for Free
+          </ActionButton>
+        </Fade>
+      </div>
+
+      <CompetitionSection />
+
+      <CaseStudies />
     </section>
   );
 }

@@ -33,7 +33,7 @@ const NotFoundPage = () => {
           damping={0.1}
         >
           <h1 className="text-highlight text-6xl font-bold">404</h1>
-          <p className="text-gray-500">
+          <p className="text-500">
             Sorry, we couldn&apos;t find that page.
           </p>
 
