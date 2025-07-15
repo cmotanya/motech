@@ -2,7 +2,7 @@ type ActionButtonType = {
   onClick: () => void;
   variant?: "primary" | "secondary";
   children: React.ReactNode;
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon?: React.ComponentType<{ size?: number; className?: string }>;
   className?: string;
 };
 
@@ -26,10 +26,12 @@ export const ActionButton = ({
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
     >
       {children}{" "}
-      <Icon
-        size={18}
-        className="transform transition-transform duration-300 ease-in-out group-hover:translate-x-1"
-      />
+      {Icon && (
+        <Icon
+          size={18}
+          className="transform transition-transform duration-300 ease-in-out group-hover:translate-x-1"
+        />
+      )}
     </button>
   );
 };

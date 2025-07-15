@@ -1,18 +1,22 @@
 "use client";
 
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Home } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import { Fade } from "react-awesome-reveal";
+import { ActionButton } from "@/components/action-button";
 
 const NotFoundPage = () => {
-  const pathname = useRouter();
+  const router = useRouter();
 
   return (
-    <section className="container flex h-dvh flex-col items-center justify-center gap-8 text-center">
+    <section className="relative flex h-dvh flex-col items-center justify-center gap-8 overflow-hidden text-center">
+      <div className="text-200 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] font-bold">
+        404
+      </div>
       <div className="-mt-18 flex h-full max-h-[40vh] w-full items-center justify-center">
-        <Fade direction="down" duration={500} triggerOnce cascade damping={0.1}>
+        <Fade direction="down" duration={300} triggerOnce cascade damping={0.1}>
           <Image
             src="/404.svg"
             alt="404"
@@ -23,30 +27,39 @@ const NotFoundPage = () => {
         </Fade>
       </div>
 
-      <div className="flex w-full flex-col gap-5 px-5 md:items-center">
+      <div className="flex w-full max-w-2xl flex-col gap-5 px-5 md:items-center">
         <Fade
           direction="up"
-          duration={500}
+          duration={300}
           delay={500}
           triggerOnce
           cascade
           damping={0.1}
         >
-          <h1 className="text-highlight text-6xl font-bold">404</h1>
-          <p className="text-500">
-            Sorry, we couldn&apos;t find that page.
+          <h2 className="text-highlight text-2xl font-bold">
+            Oops! Page Not Found
+          </h2>
+          <p className="text-500 font-medium">
+            {" "}
+            The page you&apos;re looking for seems to have wandered off into the
+            digital wilderness. Let&apos;s get you back on track!
           </p>
 
-          <button
-            onClick={() => pathname.back()}
-            className="group bg-highlight text-background flex w-full items-center justify-center gap-4 rounded-full border px-5 py-4.5 shadow hover:shadow-lg md:py-2.5"
-          >
-            <ArrowLeft
-              size={16}
-              className="transition-all duration-300 ease-in-out group-hover:-translate-x-1.5 group-active:-translate-x-1.5"
-            />
-            Go Back
-          </button>
+          <div className="flex flex-col justify-center gap-4 md:flex-row items-center">
+            <ActionButton onClick={() => router.back()} className="w-full">
+              <ArrowLeft className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1 group-active:-translate-x-1" />
+              Go Back
+            </ActionButton>
+
+            <ActionButton
+              onClick={() => router.push("/")}
+              variant="secondary"
+              className="w-full"
+            >
+              <Home className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1 group-active:-translate-x-1" />
+              Home
+            </ActionButton>
+          </div>
         </Fade>
       </div>
     </section>
