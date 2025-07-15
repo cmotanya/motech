@@ -1,6 +1,7 @@
 "use client";
 
 import { ActionButton } from "@/components/action-button";
+import CompetitionSection from "@/components/competition-section";
 import { ArrowRight, PhoneCall } from "lucide-react";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
@@ -92,6 +93,8 @@ export default function Home() {
           </ActionButton>
         </Fade>
       </div>
+
+      <CompetitionSection />
     </section>
   );
 }

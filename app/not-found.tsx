@@ -27,7 +27,7 @@ const NotFoundPage = () => {
         </Fade>
       </div>
 
-      <div className="flex w-full max-w-2xl flex-col gap-5 px-5 md:items-center">
+      <div className="flex w-full max-w-2xl flex-col items-center gap-5 px-5">
         <Fade
           direction="up"
           duration={300}
@@ -39,16 +39,20 @@ const NotFoundPage = () => {
           <h2 className="text-highlight text-2xl font-bold">
             Oops! Page Not Found
           </h2>
-          <p className="text-500 font-medium">
+          <p className="text-600 font-medium md:font-normal">
             {" "}
             The page you&apos;re looking for seems to have wandered off into the
             digital wilderness. Let&apos;s get you back on track!
           </p>
 
-          <div className="flex flex-col justify-center gap-4 md:flex-row items-center">
-            <ActionButton onClick={() => router.back()} className="w-full">
+          <div className="flex flex-col justify-center gap-4 md:flex-row md:items-center md:gap-8">
+            <ActionButton
+              onClick={() => router.push("/")}
+              variant="primary"
+              className="w-full"
+            >
               <ArrowLeft className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1 group-active:-translate-x-1" />
-              Go Back
+              Return to Previous Page
             </ActionButton>
 
             <ActionButton
@@ -57,7 +61,7 @@ const NotFoundPage = () => {
               className="w-full"
             >
               <Home className="mr-2 h-5 w-5 transition-transform duration-300 group-hover:-translate-x-1 group-active:-translate-x-1" />
-              Home
+              Go Back to Home
             </ActionButton>
           </div>
         </Fade>
