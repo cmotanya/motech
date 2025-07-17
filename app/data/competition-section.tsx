@@ -7,6 +7,7 @@ export const competitionData = [
     title: "Scalable Growth",
     description:
       "Solutions that grow with your business, from startup to enterprise level.",
+    // image: "/services/cctv-installation.jpg",
   },
   {
     id: 2,

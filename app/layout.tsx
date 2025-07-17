@@ -20,7 +20,7 @@ export default function RootLayout({
         className={`flex min-h-dvh flex-col ${geist.className} text-lg antialiased`}
       >
         <Header />
-        <main className="container flex-grow px-4">{children}</main>
+        <main className="container flex-grow">{children}</main>
         <Footer />
       </body>
     </html>
