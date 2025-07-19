@@ -1,8 +1,10 @@
 import React from "react";
 import { ActionButton } from "./action-button";
-import { ArrowRight, CheckCircle, Clock, Target } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { competitionData } from "@/app/data/competition-section";
 import { Fade } from "react-awesome-reveal";
+import Images from "next/image";
+import { Stats } from "@/app/data/starts";
 
 const CompetitionSection = () => {
   return (
@@ -51,11 +53,16 @@ const CompetitionSection = () => {
             {competitionData.map((item) => (
               <div
                 key={item.id}
-                className="bg-50 group relative overflow-hidden rounded-xl p-3 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-md md:p-4"
+                className="bg-50 group relative overflow-hidden rounded-xl border border-300 p-3 backdrop-blur-md transition-all duration-300 hover:shadow-sm md:p-4"
               >
                 <div className="mb-1 flex items-center gap-3">
-                  <div className="from-secondary to-primary flex size-10 items-center justify-center gap-2 rounded-full bg-gradient-to-br transition-transform duration-300 group-hover:scale-105">
-                    <item.icon className="text-50 size-5 text-5xl" />
+                  <div className="flex items-center justify-center gap-2 transition-transform duration-300 group-hover:scale-105">
+                    <Images
+                      src={item.icon}
+                      alt={item.title}
+                      width={50}
+                      height={50}
+                    />
                   </div>
                   <h3 className="text-secondary text-lg font-medium">
                     {item.title}
@@ -67,38 +74,34 @@ const CompetitionSection = () => {
 
                 <div className="from-secondary to-200/50 absolute top-2 right-2 size-4 rounded-full bg-gradient-to-b opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                <div className="group-hover:bg-200 absolute inset-0 -z-30 m-0.5 rounded-xl border-2 border-300 opacity-0 transition-all duration-300 group-hover:opacity-100" />
+                <div className="group-hover:bg-200 absolute inset-0 -z-30 m-0.5 rounded-xl border-1 border-300 opacity-0 transition-all duration-300 group-hover:opacity-100" />
               </div>
             ))}
           </div>
         </Fade>
       </div>
 
+      {/* Stats */}
       <Fade duration={300} delay={800} triggerOnce>
-        <div className="relative mt-15 grid grid-cols-2 gap-4 md:grid-cols-3">
-          <div className="bg-100 flex flex-col space-y-2 rounded-xl border border-300 p-2 text-center">
-            <Target className="text-secondary bg-secondary/20 absolute top-1 left-1 size-6 rounded-full p-0.5" />
-            <span className="text-secondary text-5xl font-bold">500+</span>
-            <span className="text-500 text-sm font-medium">
-              Projects Completed
-            </span>
-          </div>
-
-          <div className="bg-100 relative flex flex-col space-y-2 rounded-xl border border-300 p-2 text-center">
-            <CheckCircle className="text-secondary bg-secondary/20 absolute top-1 left-1 size-6 rounded-full p-0.5" />
-            <span className="text-secondary text-5xl font-bold">100%</span>
-            <span className="text-500 text-sm font-medium">
-              Client Satisfaction
-            </span>
-          </div>
-
-          <div className="bg-100 relative flex grow-1 flex-col space-y-2 rounded-xl border border-300 p-2 text-center">
-            <span className="text-secondary text-5xl font-bold">24/7</span>
-            <Clock className="text-secondary bg-secondary/20 absolute top-1 left-1 size-6 rounded-full p-0.5" />
-            <span className="text-500 text-sm font-medium">
-              Support Available
-            </span>
-          </div>
+        <div className="relative mt-15 grid grid-cols-2 gap-2 md:grid-cols-4">
+          {Stats.map((stat) => (
+            <div
+              key={stat.id}
+              className="bg-100 flex flex-col rounded-xl border border-300 p-2 text-center"
+            >
+              <Images
+                src={stat.image}
+                alt={stat.label}
+                width={50}
+                height={50}
+                className="size-12 rounded-full md:size-15"
+              />
+              <span className="text-secondary text-5xl font-bold">
+                {stat.value}
+              </span>
+              <span className="text-500 text-sm font-medium">{stat.label}</span>
+            </div>
+          ))}
         </div>
       </Fade>
     </div>
