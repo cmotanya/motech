@@ -1,7 +1,8 @@
 "use client";
 
-import { ActionButton } from "@/components/action-button";
-import CompetitionSection from "@/components/competition-section";
+import { ActionButton } from "@/components/hero/action-button";
+import CompetitionSection from "@/components/hero/competition-section";
+import Testimonials from "@/components/testimonials/testimonials";
 import { ArrowRight, PhoneCall } from "lucide-react";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
@@ -24,7 +25,10 @@ export default function Home() {
 
   return (
     <section className="container">
-      <div className="flex min-h-dvh flex-col items-center justify-center">
+      <div className="relative flex min-h-dvh flex-col items-center justify-center">
+        <div className="absolute top-0 right-0 left-0 h-full w-full bg-[url('/hero-bg.jpeg')] bg-cover bg-center bg-no-repeat bg-blend-overlay" />
+        <div className="absolute inset-0 h-full w-full backdrop-blur-[2px]" />
+
         <div className="flex flex-col items-center justify-center gap-4">
           <Fade direction="up" duration={300} triggerOnce>
             <h2 className="text-800 text-center text-2xl font-medium md:text-5xl">
@@ -33,7 +37,7 @@ export default function Home() {
           </Fade>
 
           <Fade direction="up" duration={300} delay={200} triggerOnce>
-            <h1 className="text-900 text-center text-5xl font-bold tracking-tight text-balance md:text-7xl">
+            <h1 className="text-center text-5xl font-bold tracking-tight text-balance md:text-7xl">
               We deliver solutions that are
               <span className="relative inline-block h-[50px] w-[350px] overflow-hidden align-middle md:h-[90px]">
                 {titles.map((title, index) => (
@@ -63,7 +67,7 @@ export default function Home() {
           </Fade>
 
           <Fade direction="up" duration={300} delay={400} triggerOnce>
-            <p className="text-900 max-w-2xl text-center leading-relaxed tracking-tight text-balance">
+            <p className="text-50 max-w-2xl text-center leading-relaxed tracking-tight text-balance">
               At <span className="font-semibold">Motech Solutions</span>, we’re
               more than a vendor. We’re your dedicated partner for{" "}
               <strong>CCTV</strong>, <strong>access control</strong>,{" "}
@@ -74,7 +78,7 @@ export default function Home() {
           </Fade>
         </div>
 
-        <div className="mt-6 flex w-full flex-col items-center justify-center gap-4 md:flex-row md:gap-8">
+        <div className="mt-6 flex w-full flex-col justify-center gap-4 px-8 md:flex-row md:gap-8 md:px-0">
           <Fade duration={300} delay={600} triggerOnce>
             <ActionButton
               onClick={() => router.push("/contact-us")}
@@ -97,6 +101,8 @@ export default function Home() {
       </div>
 
       <CompetitionSection />
+
+      <Testimonials />
     </section>
   );
 }

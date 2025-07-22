@@ -8,7 +8,7 @@ import { Stats } from "@/app/data/starts";
 
 const CompetitionSection = () => {
   return (
-    <div className="relative mx-auto mt-10 w-full overflow-hidden px-3 py-6 md:mt-0">
+    <div className="relative mx-auto w-full overflow-hidden px-3 py-6 pt-10 md:mt-0">
       <div className="bg-300/50 absolute inset-0 h-full w-full backdrop-blur-[4px]" />
 
       <div className="mx-auto grid grid-cols-1 md:grid-cols-2">
@@ -20,19 +20,26 @@ const CompetitionSection = () => {
           </Fade>
 
           <Fade direction="up" duration={300} delay={200} triggerOnce>
-            <h2 className="text-700 text-4xl font-bold whitespace-nowrap md:text-5xl">
+            <h2 className="text-900 text-4xl font-bold whitespace-nowrap md:text-5xl">
               The Motech{" "}
-              <span className="from-accent via-primary to-secondary bg-gradient-to-r bg-clip-text text-transparent">
-                Difference
+              <span>
+                <Images
+                  src="/competition-images/difference.png"
+                  alt="motech"
+                  width={150}
+                  height={150}
+                  className="inline-block align-middle md:w-[12rem]"
+                />
               </span>
             </h2>
           </Fade>
 
           <Fade direction="up" duration={300} delay={400} triggerOnce>
-            <p className="text-600 max-w-md text-lg leading-relaxed tracking-tight text-balance">
-              For a long time, we&apos;ve provided reliable security and IT
-              infrastructure solutions across Kenya-earning the trust of
-              businesses through innovation, service, and support.
+            <p className="text-800 max-w-md leading-relaxed font-medium tracking-tight text-balance">
+              Discover how Motech Solutions stands out from the competition. We
+              combine deep expertise, innovative technology, and a
+              customer-first approach to deliver security and IT solutions that
+              help your business thrive.
             </p>
           </Fade>
 
@@ -49,7 +56,7 @@ const CompetitionSection = () => {
         </div>
 
         <Fade duration={300} delay={800} triggerOnce>
-          <div className="grid grid-cols-1 gap-3 leading-[1] tracking-tight md:grid-cols-2 md:gap-4">
+          <div className="grid grid-cols-1 gap-2 leading-[1] tracking-tight md:grid-cols-2 md:gap-4">
             {competitionData.map((item) => (
               <div
                 key={item.id}
@@ -68,9 +75,7 @@ const CompetitionSection = () => {
                     {item.title}
                   </h3>
                 </div>
-                <p className="text-500 px-5 text-base font-medium">
-                  {item.description}
-                </p>
+                <p className="px-5 text-base font-medium">{item.description}</p>
 
                 <div className="from-secondary to-200/50 absolute top-2 right-2 size-4 rounded-full bg-gradient-to-b opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -83,7 +88,7 @@ const CompetitionSection = () => {
 
       {/* Stats */}
       <Fade duration={300} delay={800} triggerOnce>
-        <div className="relative mt-15 grid grid-cols-2 gap-2 md:grid-cols-4">
+        <div className="relative mt-8 grid grid-cols-2 gap-2 md:grid-cols-4">
           {Stats.map((stat) => (
             <div
               key={stat.id}
@@ -99,7 +104,7 @@ const CompetitionSection = () => {
               <span className="text-secondary text-5xl font-bold">
                 {stat.value}
               </span>
-              <span className="text-500 text-sm font-medium">{stat.label}</span>
+              <span className="text-sm font-medium">{stat.label}</span>
             </div>
           ))}
         </div>

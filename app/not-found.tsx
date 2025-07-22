@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import Image from "next/image";
 import { Fade } from "react-awesome-reveal";
-import { ActionButton } from "@/components/action-button";
+import { ActionButton } from "@/components/hero/action-button";
 
 const NotFoundPage = () => {
   const router = useRouter();
