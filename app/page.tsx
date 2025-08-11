@@ -1,108 +1,50 @@
 "use client";
 
 import { ActionButton } from "@/components/hero/action-button";
-import CompetitionSection from "@/components/hero/competition-section";
-import Testimonials from "@/components/testimonials/testimonials";
-import { ArrowRight, PhoneCall } from "lucide-react";
-import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
-import { Fade } from "react-awesome-reveal";
+import { PhoneCall } from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
-  const [titleNumber, setTitleNumber] = useState(0);
   const router = useRouter();
 
-  const titles = useMemo(() => ["innovative", "dependable", "scalable"], []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTitleNumber((prev) => (prev + 1) % titles.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [titles.length]);
-
   return (
-    <section className="container">
-      <div className="relative flex min-h-dvh flex-col items-center justify-center">
-        <div className="absolute top-0 right-0 left-0 h-full w-full bg-[url('/hero-bg.jpeg')] bg-cover bg-center bg-no-repeat bg-blend-overlay" />
-        <div className="absolute inset-0 h-full w-full backdrop-blur-[2px]" />
-
-        <div className="flex flex-col items-center justify-center gap-4">
-          <Fade direction="up" duration={300} triggerOnce>
-            <h2 className="text-800 text-center text-2xl font-medium md:text-5xl">
-              Tired of juggling multiple service providers?
-            </h2>
-          </Fade>
-
-          <Fade direction="up" duration={300} delay={200} triggerOnce>
-            <h1 className="text-center text-5xl font-bold tracking-tight text-balance md:text-7xl">
-              We deliver solutions that are
-              <span className="relative inline-block h-[50px] w-[350px] overflow-hidden align-middle md:h-[90px]">
-                {titles.map((title, index) => (
-                  <motion.span
-                    key={index}
-                    className="text-highlight absolute top-1 left-1/2 -translate-x-1/2 capitalize md:left-3 md:translate-x-0"
-                    initial={{ opacity: 0, y: -100 }}
-                    transition={{
-                      duration: 0.5,
-                      type: "spring",
-                      stiffness: 80,
-                    }}
-                    animate={
-                      titleNumber === index
-                        ? { opacity: 1, y: 0 }
-                        : {
-                            y: titleNumber > index ? -150 : 150,
-                            opacity: 0,
-                          }
-                    }
-                  >
-                    {title}
-                  </motion.span>
-                ))}
-              </span>{" "}
-            </h1>
-          </Fade>
-
-          <Fade direction="up" duration={300} delay={400} triggerOnce>
-            <p className="text-50 max-w-2xl text-center leading-relaxed tracking-tight text-balance">
-              At <span className="font-semibold">Motech Solutions</span>, we’re
-              more than a vendor. We’re your dedicated partner for{" "}
-              <strong>CCTV</strong>, <strong>access control</strong>,{" "}
-              <strong>enterprise networking</strong>, and{" "}
-              <strong>custom web development</strong>—built for security and
-              scalability.
-            </p>
-          </Fade>
+    <section className="container mx-auto mt-16 px-6 py-20">
+      <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
+        {/* Left Side – Text Content */}
+        <div className="space-y-6">
+          <h1 className="text-4xl leading-tight font-bold text-gray-900 md:text-5xl">
+            Simplify Your Tech Infrastructure
+          </h1>
+          <p className="text-lg leading-relaxed text-gray-700">
+            At <span className="font-semibold">Motech Solutions</span>, we help
+            you eliminate the hassle of managing multiple providers. From{" "}
+            <strong>CCTV</strong> and <strong>access control</strong> to{" "}
+            <strong>networking</strong> and{" "}
+            <strong>custom web development</strong>, our secure, scalable
+            solutions have you covered.
+          </p>
+          <ActionButton
+            onClick={() => router.push("/contact-us")}
+            variant="primary"
+            icon={PhoneCall}
+            className="mt-4"
+          >
+            Book a Free Consultation
+          </ActionButton>
         </div>
 
-        <div className="mt-6 flex w-full flex-col justify-center gap-4 px-8 md:flex-row md:gap-8 md:px-0">
-          <Fade duration={300} delay={600} triggerOnce>
-            <ActionButton
-              onClick={() => router.push("/contact-us")}
-              variant="secondary"
-              icon={PhoneCall}
-              className="w-full"
-            >
-              Book a Consultation
-            </ActionButton>
-
-            <ActionButton
-              onClick={() => router.push("/contact-us")}
-              icon={ArrowRight}
-              className="w-full"
-            >
-              Get Started for Free
-            </ActionButton>
-          </Fade>
+        {/* Right Side – Image */}
+        <div className="flex justify-center">
+          <Image
+            src="/hero-bg.jpeg"
+            alt="Motech Solutions Visual"
+            width={500}
+            height={500}
+            className="rounded-2xl object-cover shadow-xl"
+          />
         </div>
       </div>
-
-      <CompetitionSection />
-
-      <Testimonials />
     </section>
   );
 }
